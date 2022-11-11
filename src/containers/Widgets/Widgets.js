@@ -218,11 +218,17 @@ const { Meta } = Card;
 
 export default function () {
   const { rowStyle, colStyle } = basicStyle;
-  const [vehicleData, setVehicleData] = React.useState([]);
+  const [vehicleData, setVehicleData] = React.useState([]); 
   const [policeCar, setPoliceCar] = React.useState([]);
+  const [color1, setColor1] = React.useState(false);
+  const [color2, setColor2] = React.useState(false);
+  const [color3, setColor3] = React.useState(false);
+  const [color4, setColor4] = React.useState(false);
+  const [color5, setColor5] = React.useState(false);
   const [vipCar, setVipCar] = React.useState([]);
   const [ambulance, setAmbulance] = React.useState([]);
   const [fireBrigade, setFireBrigade] = React.useState([]);
+
 
   useEffect(() => {
 
@@ -276,6 +282,23 @@ export default function () {
     ...rechartConfigs.StackedAreaChart,
     width: !isServer && window.innerWidth < 450 ? 300 : 500,
   };
+
+  const handleColorChange1 = () => {
+    setColor1(!color1);
+  }
+  const handleColorChange2 = () => {
+    setColor2(!color2);
+  }
+  const handleColorChange3 = () => {
+    setColor3(!color3);
+  }
+  const handleColorChange4 = () => {
+    setColor4(!color4);
+  }
+  const handleColorChange5 = () => {
+    setColor5(!color5);
+  }
+
   return (
     <LayoutWrapper>
       <div style={styles.wisgetPageStyle}>
@@ -385,13 +408,29 @@ export default function () {
         <Row style={rowStyle} gutter={0} justify="start">
           <Col lg={24} md={24} sm={24} xs={24} style={colStyle}>
             <IsoWidgetsWrapper>
-              <IsoWidgetBox>
-              <p style={{marginBottom:"10px",marginTop:"-10px"}}>Record Files</p>
-                <TableViews.SimpleView
-                  tableInfo={tableinfos[0]}
-                  dataList={tableDataList}
-                />
-              </IsoWidgetBox>
+           <div style={{display:"flex",justifyContent:"space-between", marginTop:"80px", width:"100%"}}>
+        
+              <Button type={color1?"secondary":"primary"} onClick={()=>handleColorChange1()}>
+                <IntlMessages id="page.laneButton1" />
+              </Button>
+
+              <Button type={color2?"secondary":"primary"} onClick={()=>handleColorChange2()}>
+                <IntlMessages id="page.laneButton2" />
+              </Button>
+
+              <Button type={color3?"secondary":"primary"} onClick={()=>handleColorChange3()}>
+                <IntlMessages id="page.laneButton3" />
+              </Button>
+
+              <Button type={color4?"secondary":"primary"} onClick={()=>handleColorChange4()}>
+                <IntlMessages id="page.laneButton4" />
+              </Button>
+
+              <Button type={color5?"secondary":"primary"} onClick={()=>handleColorChange5  ()}>
+                <IntlMessages id="page.laneButton5" />
+              </Button>
+
+              </div>
             </IsoWidgetsWrapper>
           </Col>
         </Row>

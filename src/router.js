@@ -17,7 +17,7 @@ const publicRoutes = [
   {
     path: PUBLIC_ROUTE.LANDING,
     exact: true,
-    component: lazy(() => import('@iso/containers/Dashboard/Dashboard')),
+    component: lazy(() => import('@iso/containers/Pages/SignIn/SignIn')),
   },
   {
     path: PUBLIC_ROUTE.PAGE_404,

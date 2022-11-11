@@ -14,6 +14,7 @@ import {
   signInWithFacebook,
 } from '@iso/lib/firebase/firebase.authentication.util';
 import SignInStyleWrapper from './SignIn.styles';
+import { notification } from 'antd';
 
 const { login } = authAction;
 const { clearMenu } = appAction;
@@ -21,13 +22,15 @@ const { clearMenu } = appAction;
 export default function SignIn() {
   let history = useHistory();
   let location = useLocation();
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.Auth.idToken);
 
   const [redirectToReferrer, setRedirectToReferrer] = React.useState(false);
   React.useEffect(() => {
     if (isLoggedIn) {
-      setRedirectToReferrer(true);
+      // setRedirectToReferrer(true);
     }
   }, [isLoggedIn]);
 
@@ -39,13 +42,27 @@ export default function SignIn() {
       dispatch(login());
     }
     dispatch(clearMenu());
-    history.push('/dashboard');
+
+    if (userName === "admin" && password === "admin") {
+      history.push('/dashboard');
+    }
+
   }
   let { from } = location.state || { from: { pathname: '/dashboard' } };
 
   if (redirectToReferrer) {
     return <Redirect to={from} />;
   }
+
+  console.log(userName === "admin" && password === "admin")
+  const handleChange = (e) => {
+    setUserName(e.target.value);
+  }
+
+  const handleChange2 = (e) => {
+    setPassword(e.target.value);
+  }
+
   return (
     <SignInStyleWrapper className="isoSignInPage">
       <div className="isoLoginContentWrapper">
@@ -61,7 +78,9 @@ export default function SignIn() {
                 <Input
                   size="large"
                   placeholder="Username"
-                  autoComplete="true"
+                  // autoComplete="true"
+                  type="text"
+                  onChange={(e) => handleChange(e)}
                 />
               </div>
 
@@ -70,7 +89,8 @@ export default function SignIn() {
                   size="large"
                   type="password"
                   placeholder="Password"
-                  autoComplete="false"
+                  onChange={(e) => handleChange2(e)}
+                // autoComplete="false"
                 />
               </div>
 
@@ -87,45 +107,7 @@ export default function SignIn() {
                 <IntlMessages id="page.signInPreview" />
               </p>
             </form>
-            <div className="isoInputWrapper isoOtherLogin">
-              <Button
-                onClick={signInWithFacebook}
-                type="primary"
-                className="btnFacebook"
-              >
-                <IntlMessages id="page.signInFacebook" />
-              </Button>
-              <Button
-                onClick={signInWithGoogle}
-                type="primary"
-                className="btnGooglePlus"
-              >
-                <IntlMessages id="page.signInGooglePlus" />
-              </Button>
 
-              <Button
-                onClick={() => {
-                  Auth0.login();
-                }}
-                type="primary"
-                className="btnAuthZero"
-              >
-                <IntlMessages id="page.signInAuth0" />
-              </Button>
-
-              <FirebaseLoginForm
-                history={history}
-                login={(token) => dispatch(login(token))}
-              />
-            </div>
-            <div className="isoCenterComponent isoHelperWrapper">
-              <Link to="/forgotpassword" className="isoForgotPass">
-                <IntlMessages id="page.signInForgotPass" />
-              </Link>
-              <Link to="/signup">
-                <IntlMessages id="page.signInCreateAccount" />
-              </Link>
-            </div>
           </div>
         </div>
       </div>
