@@ -58,7 +58,7 @@ export const HotelPostGridLoader = props => {
       width={400}
       speed={2}
       primaryColor="#f3f3f3"
-      secondaryColor="#e9e8ec"
+      secondaryColor="#ffff00"
       {...props}
     >
       <circle cx="39.34" cy="17.32" r="0.71" />

@@ -41,6 +41,7 @@ const styles = {
     flexFlow: 'row wrap',
     alignItems: 'flex-start',
     overflow: 'hidden',
+    width:"100%"
   },
 };
 const SIGNLE_PROGRESS_WIDGET = [
@@ -403,36 +404,6 @@ export default function () {
             </Card>
           </Col>
 
-        </Row>
-
-        <Row style={rowStyle} gutter={0} justify="start">
-          <Col lg={24} md={24} sm={24} xs={24} style={colStyle}>
-            <IsoWidgetsWrapper>
-           <div style={{display:"flex",justifyContent:"space-between", marginTop:"80px", width:"100%"}}>
-        
-              <Button type={color1?"secondary":"primary"} onClick={()=>handleColorChange1()}>
-                <IntlMessages id="page.laneButton1" />
-              </Button>
-
-              <Button type={color2?"secondary":"primary"} onClick={()=>handleColorChange2()}>
-                <IntlMessages id="page.laneButton2" />
-              </Button>
-
-              <Button type={color3?"secondary":"primary"} onClick={()=>handleColorChange3()}>
-                <IntlMessages id="page.laneButton3" />
-              </Button>
-
-              <Button type={color4?"secondary":"primary"} onClick={()=>handleColorChange4()}>
-                <IntlMessages id="page.laneButton4" />
-              </Button>
-
-              <Button type={color5?"secondary":"primary"} onClick={()=>handleColorChange5  ()}>
-                <IntlMessages id="page.laneButton5" />
-              </Button>
-
-              </div>
-            </IsoWidgetsWrapper>
-          </Col>
         </Row>
 
       </div>

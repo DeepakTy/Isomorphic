@@ -84,6 +84,11 @@ const Buttons = ComponentName => styled(ComponentName)`
       color: #ffffff;
     }
 
+    &.ant-btn-secondary {
+      color: #FFFF00;
+      background-color:#ffff00;
+    }
+
     &.ant-btn-dashed {
       border-style: dashed;
       border-color: ${palette('border', 1)};
